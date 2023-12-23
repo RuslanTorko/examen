@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .highlight {
+            border: 2px solid red;
+        }
+    </style>
+    <title>Завдання з числами</title>
+</head>
+<body>
+    <p>Цей текст містить число 70, також 19</p>
+    <p>Цей абзац містить числа 100, 78 та 39</p>
+    <p>Цей абзац містить число 95, 79і</p>
+    <button onclick="numbertop()">Enter</button>
+
+    <script>
+        function numbertop() {
+            var paragraphs = document.querySelectorAll('p');
+            var maxNumber = -Infinity;
+            var maxNumberParagraph;
+
+            paragraphs.forEach(function (paragraph) {
+                var text = paragraph.innerText;
+                var numbers = text.match(/\d+/g);
+
+                if (numbers) {
+                    var currentMax = Math.max(...numbers.map(Number));
+
+                    if (currentMax > maxNumber) {
+                        maxNumber = currentMax;
+                        maxNumberParagraph = paragraph;
+                    }
+                }
+            });
+
+            maxNumberParagraph.classList.add('highlight');
+        }
+    </script>
+</body>
+</html>
